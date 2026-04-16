@@ -12,7 +12,6 @@ import NotFound from './pages/NotFound';
 import './App.css';
 
 function App() {
-  const isAuthenticated = localStorage.getItem("login");
 
   return (
     <AppProvider>
@@ -23,21 +22,19 @@ function App() {
           <Route
             path="/*"
             element={
-              isAuthenticated ? (
-                <Layout>
-                  <Routes>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/purchases" element={<Purchases />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/reports" element={<Reports />} />
-                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </Layout>
-              ) : (
-                <Navigate to="/login" replace />
-              )
+
+              <Layout>
+                <Routes>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/purchases" element={<Purchases />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/reports" element={<Reports />} />
+                  <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Layout>
+
             }
           />
         </Routes>

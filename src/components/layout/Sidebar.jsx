@@ -29,19 +29,19 @@ const SidebarLink = ({ to, icon: Icon, label }) => (
 );
 
 export const Sidebar = () => {
-  
-const navigate = useNavigate();
 
-const handleLogout = () => {
-  // 1. Clear stored auth data
+  const navigate = useNavigate();
 
-  // 2. (Optional) Clear session storage
-  sessionStorage.clear();
-  localStorage.clear()
+  const handleLogout = () => {
+    // 1. Clear stored auth data
 
-  // 3. Redirect to login page
-  navigate('/login');
-};
+    // 2. (Optional) Clear session storage
+    sessionStorage.clear();
+    localStorage.clear()
+
+    // 3. Redirect to login page
+    navigate('/login');
+  };
   return (
     <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50">
       <div className="p-6 flex items-center gap-3 border-b border-gray-50">
@@ -49,8 +49,8 @@ const handleLogout = () => {
           <Factory size={24} />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-gray-900 leading-none">TheIndianMenufecturer</h1>
-          <p className="text-xs text-gray-500 mt-1 font-medium">SaaS Platform</p>
+          <h1 className="text-xl font-bold text-gray-900 leading-none">Indian manufecturer</h1>
+          <p className="text-xs text-gray-500 mt-1 font-medium">The Indian manufecturer</p>
         </div>
       </div>
 

@@ -22,15 +22,15 @@ const NotFound = () => {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button 
-          variant="secondary" 
+        <Button
+          variant="secondary"
           onClick={() => navigate(-1)}
           className="px-8"
         >
           <ArrowLeft size={18} />
           Go Back
         </Button>
-        <Button 
+        <Button
           onClick={() => navigate('/dashboard')}
           className="px-8 shadow-lg shadow-brand/25"
         >
@@ -41,7 +41,7 @@ const NotFound = () => {
 
       <div className="mt-16 pt-8 border-t border-gray-100 w-full max-w-xs transition-opacity duration-1000 opacity-50">
         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-          The Indian Menufecturer
+          The Indian manufecturer
         </p>
       </div>
     </div>
