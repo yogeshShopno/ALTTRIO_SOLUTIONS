@@ -7,14 +7,14 @@ import { Input } from '../components/ui/Input';
 export const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('admin');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('admin@gmail.com');
+  const [password, setPassword] = useState('Pass@123');
 
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
     // Simulate API call
-    if (email === 'admin' && password === 'password123') {
+    if (email === 'admin@gmail.com' && password === 'Pass@123') {
       setTimeout(() => {
         setLoading(false);
         navigate('/dashboard');
@@ -31,8 +31,11 @@ export const Login = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-brand rounded-2xl text-white shadow-xl shadow-brand/30 mb-6">
-            <Factory size={32} />
+          <div className="inline-flex items-center justify-center w-16 h-16rounded-2xl text-white shadow-xl shadow-brand/30 mb-6">
+              <div className="w-20  flex items-center justify-center  ">
+
+          <img src='/logo.jpg' />
+        </div>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
           <p className="text-gray-500 mt-2 font-medium">ALTTRIO SOLUTIONS </p>
