@@ -18,6 +18,8 @@ import { Badge } from '../components/ui/Badge';
 import { Modal } from '../components/ui/Modal';
 import { Input, Select } from '../components/ui/Input';
 
+import { useEffect } from 'react';
+
 const ProjectForm = ({ onSave, onCancel }) => {
   const { products } = useApp();
   const [formData, setFormData] = useState({
@@ -25,6 +27,8 @@ const ProjectForm = ({ onSave, onCancel }) => {
     category: '',
     items: [{ productId: '', quantity: 1 }]
   });
+
+
 
   const handleAddItem = () => {
     setFormData({
@@ -112,9 +116,11 @@ const ProjectForm = ({ onSave, onCancel }) => {
 
 const StageModal = ({ isOpen, onClose, currentStage, onSelect }) => {
   const stages = [
-    { id: 'A', name: 'Aluminium Cutting', color: 'bg-indigo-500' },
-    { id: 'G', name: 'Glass Fitting', color: 'bg-sky-500' },
-    { id: 'O', name: 'Quality Check', color: 'bg-amber-500' },
+    { id: 'A', name: 'Aluminium', color: 'bg-gray-500' },
+    { id: 'G', name: 'Glass', color: 'bg-white-500' },
+    { id: 'H', name: 'Hardware', color: 'bg-black-500' },
+    { id: 'C', name: 'Coating', color: 'bg-gray-500' },
+    { id: 'O', name: 'Order', color: 'bg-amber-500' },
     { id: 'F', name: 'Final Finishing', color: 'bg-emerald-500' },
   ];
 
@@ -128,8 +134,8 @@ const StageModal = ({ isOpen, onClose, currentStage, onSelect }) => {
             key={stage.id}
             onClick={() => { onSelect(stage.id); onClose(); }}
             className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${currentStage === stage.id
-                ? 'border-brand bg-brand/5'
-                : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
+              ? 'border-brand bg-brand/5'
+              : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
               }`}
           >
             <div className="flex items-center gap-4">
@@ -156,6 +162,10 @@ export const Projects = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isStageModalOpen, setIsStageModalOpen] = useState(false);
+  useEffect(() => {
+    // MetallicCSS - import only JavaScript
+    import('metallicss');
+  }, [isFormOpen]);
 
   const handleSaveProject = (data) => {
     addProject(data);
@@ -176,84 +186,90 @@ export const Projects = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
         {projects.map((project) => (
-          <Card key={project.id} className="group hover:ring-2 hover:ring-brand/20 transition-all flex flex-col">
-            <div className="flex-1">
-              <div className="flex justify-between items-start mb-4">
-                <Badge variant={project.category === 'Aluminium' ? 'brand' : 'info'}>
-                  {project.category}
-                </Badge>
-                <div className="flex gap-1">
-                  <button className="p-1.5 text-gray-400 hover:text-gray-900 rounded-md transition-colors">
-                    <MoreVertical size={18} />
-                  </button>
-                </div>
-              </div>
-
-              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors">
-                {project.name}
-              </h3>
-
-              <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
-                <div className="flex items-center gap-1">
-                  <Layers size={14} />
-                  <span>{project.items.length} Items</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Target size={14} />
-                  <span>Stage {project.stage}</span>
-                </div>
-              </div>
-
-              <div className="space-y-3 mb-6">
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Progress</p>
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden border border-gray-50">
-                    <div
-                      className={`h-full rounded-full transition-all duration-1000 ${project.status === 'Completed' ? 'bg-emerald-500' : 'bg-brand shadow-[0_0_8px_rgba(79,70,229,0.4)]'
-                        }`}
-                      style={{ width: project.status === 'Completed' ? '100%' : project.status === 'In Progress' ? '65%' : '15%' }}
-                    ></div>
-                  </div>
-                  <span className="text-xs font-bold text-gray-700">
-                    {project.status === 'Completed' ? '100%' : project.status === 'In Progress' ? '65%' : '15%'}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-gray-200 text-brand">
-                    <Factory size={16} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase">Current Stage</p>
-                    <p className="text-sm font-bold text-gray-900">
-                      {project.stage === 'A' ? 'Aluminium Cutting' : project.stage === 'G' ? 'Glass Fitting' : project.stage === 'O' ? 'Quality Check' : 'Finishing'}
-                    </p>
+          <Card key={project.id} className="group transition-all flex flex-col metallicss"
+            style={{
+              backgroundColor: '#c0c0c0'
+            }}>
+            <div className='bg-white p-5'>
+              <div className="flex-1">
+                <div className="flex justify-between items-start mb-4">
+                  <Badge variant={project.category === 'Aluminium' ? 'brand' : 'info'}>
+                    {project.category}
+                  </Badge>
+                  <div className="flex gap-1">
+                    <button className="p-1.5 text-gray-400 hover:text-gray-900 rounded-md transition-colors">
+                      <MoreVertical size={18} />
+                    </button>
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  className="h-8 w-8 !p-0"
-                  onClick={() => { setSelectedProject(project); setIsStageModalOpen(true); }}
-                >
-                  <ChevronRight size={18} />
-                </Button>
-              </div>
-            </div>
 
-            <div className="pt-4 border-t border-gray-100 flex gap-2">
-              <Select
-                className="flex-1"
-                value={project.status}
-                onChange={(e) => updateProjectStatus(project.id, e.target.value)}
-                options={[
-                  { label: 'Pending', value: 'Pending' },
-                  { label: 'In Progress', value: 'In Progress' },
-                  { label: 'Completed', value: 'Completed' },
-                ]}
-              />
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors">
+                  {project.name}
+                </h3>
+
+                <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+                  <div className="flex items-center gap-1">
+                    <Layers size={14} />
+                    <span>{project.items.length} Items</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Target size={14} />
+                    <span>Stage {project.stage}</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Progress</p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden border border-gray-50">
+                      <div
+                        className={`h-full rounded-full transition-all duration-1000 ${project.status === 'Completed' ? 'bg-emerald-500' : 'bg-brand shadow-[0_0_8px_rgba(79,70,229,0.4)]'
+                          }`}
+                        style={{ width: project.status === 'Completed' ? '100%' : project.status === 'In Progress' ? '65%' : '15%' }}
+                      ></div>
+                    </div>
+                    <span className="text-xs font-bold text-gray-700">
+                      {project.status === 'Completed' ? '100%' : project.status === 'In Progress' ? '65%' : '15%'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-gray-200 text-brand">
+                      <Factory size={16} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase">Current Stage</p>
+                      <p className="text-sm font-bold text-gray-900">
+                        {project.stage === 'A' ? 'Aluminium Cutting' : project.stage === 'G' ? 'Glass Fitting' : project.stage === 'O' ? 'Quality Check' : 'Finishing'}
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    className="h-8 w-8 !p-0"
+                    onClick={() => { setSelectedProject(project); setIsStageModalOpen(true); }}
+                  >
+                    <ChevronRight size={18} />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100 flex gap-2">
+                <Select
+                  className="flex-1"
+                  value={project.status}
+                  onChange={(e) => updateProjectStatus(project.id, e.target.value)}
+                  options={[
+                    { label: 'Pending', value: 'Pending' },
+                    { label: 'In Progress', value: 'In Progress' },
+                    { label: 'Completed', value: 'Completed' },
+                  ]}
+                />
+              </div>
             </div>
           </Card>
         ))}

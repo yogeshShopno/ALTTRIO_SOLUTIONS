@@ -6,6 +6,7 @@ import { Input, Select } from '../ui/Input';
 export const ProductForm = ({ onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     name: '',
+    unitType: '',
     unit: '',
     category: '',
     stock: 0,
@@ -45,13 +46,24 @@ export const ProductForm = ({ onSave, onCancel }) => {
           placeholder="e.g. Standard Frame"
           required
         />
+      <div className="grid grid-cols-2 gap-4">
+
         <Input 
-          label="Unit" 
+          label="Unit Type" 
           value={formData.unit}
           onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
           placeholder="mm, sqft, pcs"
           required
         />
+         <Input 
+          label="Unit" 
+          value={formData.unit}
+          onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
+          placeholder="1,2,3..."
+          required
+        />
+      </div>
+
       </div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -63,6 +75,10 @@ export const ProductForm = ({ onSave, onCancel }) => {
             { label: 'Aluminium', value: 'Aluminium' },
             { label: 'Glass', value: 'Glass' },
             { label: 'Hardware', value: 'Hardware' },
+            { label: 'Coating', value: 'Coating' },
+            { label: 'Accessories', value: 'Accessories' },
+            { label: 'Others', value: 'Others' },
+
           ]}
           required
         />

@@ -14,6 +14,9 @@ importers:
       lucide-react:
         specifier: ^1.8.0
         version: 1.8.0(react@19.2.5)
+      metallicss:
+        specifier: ^4.0.3
+        version: 4.0.3
       react:
         specifier: ^19.2.4
         version: 19.2.5
@@ -796,6 +799,9 @@ packages:
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
+
+  metallicss@4.0.3:
+    resolution: {integrity: sha512-ux1x7cOTg/jlvlN1kqeUZvPpAvkpxvGP/a4OLBI2kCdyAE8cK4eJXVLzKP8nv/z3OvBrpXmBQfncXEhCjRkQIg==}
 
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
@@ -1689,6 +1695,8 @@ snapshots:
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  metallicss@4.0.3: {}
 
   minimatch@3.1.5:
     dependencies:
