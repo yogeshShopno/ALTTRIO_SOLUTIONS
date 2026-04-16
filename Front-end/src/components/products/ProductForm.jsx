@@ -50,8 +50,8 @@ export const ProductForm = ({ onSave, onCancel }) => {
 
         <Input 
           label="Unit Type" 
-          value={formData.unit}
-          onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
+          value={formData.unitType}
+          onChange={(e) => setFormData({ ...formData, unitType: e.target.value })}
           placeholder="mm, sqft, pcs"
           required
         />
