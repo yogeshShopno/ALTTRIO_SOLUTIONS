@@ -7,17 +7,24 @@ import { Input } from '../components/ui/Input';
 export const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('admin@bharatmfg.in');
+  const [email, setEmail] = useState('admin@TheIndianMenufecturer.in');
   const [password, setPassword] = useState('password123');
 
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
     // Simulate API call
+    if(email === 'admin@TheIndianMenufecturer.in' && password === 'password123'){
     setTimeout(() => {
       setLoading(false);
       navigate('/dashboard');
     }, 1500);
+    localStorage.setItem("login",true);
+    } 
+    else{
+      setLoading(false);
+      alert('Invalid credentials');
+    }``
   };
 
   return (
@@ -28,12 +35,12 @@ export const Login = () => {
             <Factory size={32} />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-500 mt-2 font-medium">BharatMfg SaaS Platform</p>
+          <p className="text-gray-500 mt-2 font-medium">The Indian Menufecturer </p>
         </div>
 
         <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">
           <form onSubmit={handleLogin} className="space-y-6">
-            <Input 
+            <Input
               label="Email Address"
               type="email"
               icon={Mail}
@@ -42,8 +49,8 @@ export const Login = () => {
               placeholder="name@company.com"
               required
             />
-            
-            <Input 
+
+            <Input
               label="Password"
               type="password"
               icon={Lock}
@@ -61,9 +68,9 @@ export const Login = () => {
               <a href="#" className="font-semibold text-brand hover:text-brand-hover">Forgot password?</a>
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full h-12 text-lg" 
+            <Button
+              type="submit"
+              className="w-full h-12 text-lg"
               disabled={loading}
             >
               {loading ? (
@@ -85,13 +92,12 @@ export const Login = () => {
               <span className="font-bold flex items-center gap-1 mb-1 italic uppercase tracking-wider">
                 Note:
               </span>
-              New user registrations are currently <strong>Pending until confirmation</strong> by the main administrator.
-            </p>
+              This is just a demo version. this actual login will be different</p>
           </div>
         </div>
 
         <p className="text-center mt-8 text-sm text-gray-500 font-medium">
-          Don't have an account? <a href="#" className="text-brand font-bold">Request Access</a>
+          Don't have an account? <a href="#" className="text-brand font-bold">Register Now</a>
         </p>
       </div>
     </div>

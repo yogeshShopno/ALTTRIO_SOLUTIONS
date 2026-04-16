@@ -28,7 +28,7 @@ export const Navbar = () => {
             YM
           </div>
           <div className="hidden md:block text-left">
-            <p className="text-sm font-bold text-gray-900 leading-none">Yogesh Sharma</p>
+            <p className="text-sm font-bold text-gray-900 leading-none">Ratan Tata</p>
             <p className="text-xs text-gray-500 mt-1 font-medium">Administrator</p>
           </div>
         </div>

@@ -7,20 +7,21 @@ import Purchases from './pages/Purchases';
 import Projects from './pages/Projects';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 
 import './App.css';
 
 function App() {
-  const isAuthenticated = true; // Demo mode: always authenticated
+  const isAuthenticated = localStorage.getItem("login");
 
   return (
     <AppProvider>
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          
-          <Route 
-            path="/*" 
+
+          <Route
+            path="/*"
             element={
               isAuthenticated ? (
                 <Layout>
@@ -31,12 +32,13 @@ function App() {
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>
               ) : (
                 <Navigate to="/login" replace />
               )
-            } 
+            }
           />
         </Routes>
       </Router>

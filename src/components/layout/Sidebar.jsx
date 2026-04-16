@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Package, 
-  ShoppingCart, 
-  Briefcase, 
-  BarChart3, 
+import {
+  LayoutDashboard,
+  Package,
+  ShoppingCart,
+  Briefcase,
+  BarChart3,
   Settings,
   ChevronLeft,
   Factory
@@ -16,8 +16,8 @@ const SidebarLink = ({ to, icon: Icon, label }) => (
     to={to}
     className={({ isActive }) => `
       flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
-      ${isActive 
-        ? 'bg-brand text-white shadow-md shadow-brand/20' 
+      ${isActive
+        ? 'bg-brand text-white shadow-md shadow-brand/20'
         : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
       }
     `}
@@ -35,7 +35,7 @@ export const Sidebar = () => {
           <Factory size={24} />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-gray-900 leading-none">BharatMfg</h1>
+          <h1 className="text-xl font-bold text-gray-900 leading-none">TheIndianMenufecturer</h1>
           <p className="text-xs text-gray-500 mt-1 font-medium">SaaS Platform</p>
         </div>
       </div>
