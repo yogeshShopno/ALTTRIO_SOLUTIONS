@@ -7,21 +7,21 @@ import { Input } from '../components/ui/Input';
 export const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('admin@TheIndianmanufecturer.in');
+  const [email, setEmail] = useState('admin');
   const [password, setPassword] = useState('password123');
 
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
     // Simulate API call
-    if (email === 'admin@TheIndianmanufecturer.in' && password === 'password123') {
+    if (email === 'admin' && password === 'password123') {
       setTimeout(() => {
         setLoading(false);
         navigate('/dashboard');
       }, 1500);
       localStorage.setItem("login", true);
     }
-    else {
+    else {``
       setLoading(false);
       alert('Invalid credentials');
     } ``
@@ -35,7 +35,7 @@ export const Login = () => {
             <Factory size={32} />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-500 mt-2 font-medium">The Indian manufecturer </p>
+          <p className="text-gray-500 mt-2 font-medium">ALTTRIO SOLUTIONS </p>
         </div>
 
         <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">

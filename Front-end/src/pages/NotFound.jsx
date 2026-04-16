@@ -41,7 +41,7 @@ const NotFound = () => {
 
       <div className="mt-16 pt-8 border-t border-gray-100 w-full max-w-xs transition-opacity duration-1000 opacity-50">
         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-          The Indian manufecturer
+          ALTTRIO SOLUTIONS
         </p>
       </div>
     </div>
