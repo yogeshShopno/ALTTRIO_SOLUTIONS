@@ -45,8 +45,9 @@ export const Sidebar = () => {
   return (
     <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50">
       <div className="p-6 flex items-center gap-3 border-b border-gray-50">
-        <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center  shadow-lg shadow-brand/30">
-          <Factory size={24} />
+        <div className="w-20 p-2 rounded-xl flex items-center justify-center  shadow-lg shadow-brand/30">
+
+          <img src='/favicon.svg' />
         </div>
         <div>
           <h1 className="text-xl font-bold text-gray-900 leading-none">Indian manufecturer</h1>
