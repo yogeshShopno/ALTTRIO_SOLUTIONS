@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
+  --primary: #022135;
+  --secondary: #F4911D;
+  --primary-hover: #01253d;
   --bg-main: #f9fafb;
 }
 
 @theme {
   --color-brand: var(--primary);
+  --color-brand-secondary: var(--secondary);
   --color-brand-hover: var(--primary-hover);
 }
 

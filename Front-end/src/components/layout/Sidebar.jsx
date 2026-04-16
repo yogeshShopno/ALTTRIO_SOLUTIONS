@@ -43,15 +43,14 @@ export const Sidebar = () => {
     navigate('/login');
   };
   return (
-    <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50">
-      <div className="p-6 flex items-center gap-3 border-b border-gray-50">
-        <div className="w-20 p-2 rounded-xl flex items-center justify-center  shadow-lg shadow-brand/30">
+    <aside className="w-64 h-screen  flex flex-col fixed left-0 top-0 z-50">
+      <div className="p-6 flex items-center gap-3 ">
+        <div className="w-20  flex items-center justify-center  ">
 
-          <img src='/favicon.svg' />
+          <img src='/logo.jpg' />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-gray-900 leading-none">Indian manufecturer</h1>
-          <p className="text-xs text-gray-500 mt-1 font-medium">The Indian manufecturer</p>
+          <h1 className="text-xl font-bold text-gray-900 leading-none">ALTTRIO SOLUTIONS</h1>
         </div>
       </div>
 
