@@ -1,30 +1,48 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AppProvider } from './store/AppContext';
+import { Layout } from './components/layout/Layout';
+import Dashboard from './pages/Dashboard';
+import Products from './pages/Products';
+import Purchases from './pages/Purchases';
+import Projects from './pages/Projects';
+import Reports from './pages/Reports';
+import Login from './pages/Login';
 
-import './App.css'
-import Login from './components/Login';
-import AddPurchase from './components/AddPurchase';
-import AddProduct from './components/AddProduct';
-import AddSale from './components/AddSale';
-import Projects from './components/Projects';
+import './App.css';
 
 function App() {
+  const isAuthenticated = true; // Demo mode: always authenticated
 
   return (
-    <>
-      <BrowserRouter>
+    <AppProvider>
+      <Router>
         <Routes>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/AddPurchase' element={<AddPurchase />}></Route>
-          <Route path='/AddProduct' element={<AddProduct />}></Route>
-          <Route path='/AddSale' element={<AddSale />}></Route>
-          <Route path='/Projects' element={<Projects />}></Route>
+          <Route path="/login" element={<Login />} />
+          
+          <Route 
+            path="/*" 
+            element={
+              isAuthenticated ? (
+                <Layout>
+                  <Routes>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/purchases" element={<Purchases />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/reports" element={<Reports />} />
+                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                  </Routes>
+                </Layout>
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            } 
+          />
         </Routes>
-
-      </BrowserRouter>
-
-    </>
-  )
+      </Router>
+    </AppProvider>
+  );
 }
 
-export default App
+export default App;
+
