@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 import {
   LayoutDashboard,
   Package,
@@ -7,8 +8,8 @@ import {
   Briefcase,
   BarChart3,
   Settings,
-  ChevronLeft,
-  Factory
+  Factory,
+  LogOut
 } from 'lucide-react';
 
 const SidebarLink = ({ to, icon: Icon, label }) => (
@@ -28,6 +29,19 @@ const SidebarLink = ({ to, icon: Icon, label }) => (
 );
 
 export const Sidebar = () => {
+  
+const navigate = useNavigate();
+
+const handleLogout = () => {
+  // 1. Clear stored auth data
+
+  // 2. (Optional) Clear session storage
+  sessionStorage.clear();
+  localStorage.clear()
+
+  // 3. Redirect to login page
+  navigate('/login');
+};
   return (
     <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50">
       <div className="p-6 flex items-center gap-3 border-b border-gray-50">
@@ -57,6 +71,14 @@ export const Sidebar = () => {
             <div className="bg-brand w-3/4 h-full rounded-full"></div>
           </div>
         </div>
+        <button
+          onClick={handleLogout}
+          className="  flex items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
+
       </div>
     </aside>
   );

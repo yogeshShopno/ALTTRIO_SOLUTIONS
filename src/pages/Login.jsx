@@ -19,8 +19,7 @@ export const Login = () => {
       setLoading(false);
       navigate('/dashboard');
     }, 1500);
-    localStorage.setItem("login",true);
-    } 
+    localStorage.setItem("login",true);} 
     else{
       setLoading(false);
       alert('Invalid credentials');
