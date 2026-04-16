@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Plus, 
-  Briefcase, 
-  Clock, 
-  CheckCircle2, 
-  AlertCircle, 
-  MoreVertical, 
+import {
+  Plus,
+  Briefcase,
+  Clock,
+  CheckCircle2,
+  AlertCircle,
+  MoreVertical,
   ChevronRight,
   Target,
   Layers,
@@ -44,15 +44,15 @@ const ProjectForm = ({ onSave, onCancel }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <Input 
+      <Input
         label="Project Name"
         value={formData.name}
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         placeholder="e.g. DLF Galleria"
         required
       />
-      
-      <Select 
+
+      <Select
         label="Project Category"
         value={formData.category}
         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -75,7 +75,7 @@ const ProjectForm = ({ onSave, onCancel }) => {
         {formData.items.map((item, idx) => (
           <div key={idx} className="flex gap-3">
             <div className="flex-1">
-              <Select 
+              <Select
                 value={item.productId}
                 onChange={(e) => {
                   const newItems = [...formData.items];
@@ -87,7 +87,7 @@ const ProjectForm = ({ onSave, onCancel }) => {
               />
             </div>
             <div className="w-24">
-              <Input 
+              <Input
                 type="number"
                 value={item.quantity}
                 onChange={(e) => {
@@ -127,14 +127,13 @@ const StageModal = ({ isOpen, onClose, currentStage, onSelect }) => {
           <button
             key={stage.id}
             onClick={() => { onSelect(stage.id); onClose(); }}
-            className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${
-              currentStage === stage.id 
-                ? 'border-brand bg-brand/5' 
+            className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${currentStage === stage.id
+                ? 'border-brand bg-brand/5'
                 : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-4">
-              <div className={`w-10 h-10 ${stage.color} rounded-lg flex items-center justify-center text-white font-bold`}>
+              <div className={`w-10 h-10 ${stage.color} rounded-lg flex items-center justify-center  font-bold`}>
                 {stage.id}
               </div>
               <div className="text-left">
@@ -194,7 +193,7 @@ export const Projects = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors">
                 {project.name}
               </h3>
-              
+
               <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
                 <div className="flex items-center gap-1">
                   <Layers size={14} />
@@ -210,10 +209,9 @@ export const Projects = () => {
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Progress</p>
                 <div className="flex items-center gap-3">
                   <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden border border-gray-50">
-                    <div 
-                      className={`h-full rounded-full transition-all duration-1000 ${
-                        project.status === 'Completed' ? 'bg-emerald-500' : 'bg-brand shadow-[0_0_8px_rgba(79,70,229,0.4)]'
-                      }`}
+                    <div
+                      className={`h-full rounded-full transition-all duration-1000 ${project.status === 'Completed' ? 'bg-emerald-500' : 'bg-brand shadow-[0_0_8px_rgba(79,70,229,0.4)]'
+                        }`}
                       style={{ width: project.status === 'Completed' ? '100%' : project.status === 'In Progress' ? '65%' : '15%' }}
                     ></div>
                   </div>
@@ -224,29 +222,29 @@ export const Projects = () => {
               </div>
 
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl mb-6">
-                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-gray-200 text-brand">
-                      <Factory size={16} />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold text-gray-400 uppercase">Current Stage</p>
-                      <p className="text-sm font-bold text-gray-900">
-                        {project.stage === 'A' ? 'Aluminium Cutting' : project.stage === 'G' ? 'Glass Fitting' : project.stage === 'O' ? 'Quality Check' : 'Finishing'}
-                      </p>
-                    </div>
-                 </div>
-                 <Button 
-                   variant="ghost" 
-                   className="h-8 w-8 !p-0"
-                   onClick={() => { setSelectedProject(project); setIsStageModalOpen(true); }}
-                 >
-                   <ChevronRight size={18} />
-                 </Button>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-gray-200 text-brand">
+                    <Factory size={16} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase">Current Stage</p>
+                    <p className="text-sm font-bold text-gray-900">
+                      {project.stage === 'A' ? 'Aluminium Cutting' : project.stage === 'G' ? 'Glass Fitting' : project.stage === 'O' ? 'Quality Check' : 'Finishing'}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  className="h-8 w-8 !p-0"
+                  onClick={() => { setSelectedProject(project); setIsStageModalOpen(true); }}
+                >
+                  <ChevronRight size={18} />
+                </Button>
               </div>
             </div>
 
             <div className="pt-4 border-t border-gray-100 flex gap-2">
-              <Select 
+              <Select
                 className="flex-1"
                 value={project.status}
                 onChange={(e) => updateProjectStatus(project.id, e.target.value)}
@@ -265,8 +263,8 @@ export const Projects = () => {
         <ProjectForm onSave={handleSaveProject} onCancel={() => setIsFormOpen(false)} />
       </Modal>
 
-      <StageModal 
-        isOpen={isStageModalOpen} 
+      <StageModal
+        isOpen={isStageModalOpen}
         onClose={() => setIsStageModalOpen(false)}
         currentStage={selectedProject?.stage}
         onSelect={(stage) => updateProjectStage(selectedProject.id, stage)}

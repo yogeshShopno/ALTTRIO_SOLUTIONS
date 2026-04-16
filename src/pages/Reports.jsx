@@ -22,35 +22,35 @@ export const Reports = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-brand text-white border-none shadow-lg shadow-brand/30">
+        <Card className="bg-brand border-none shadow-lg shadow-brand/30">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-white/70 text-sm font-bold uppercase">Total Items Tracked</p>
+              <p className="text-gray-700 text-sm font-bold uppercase">Total Items Tracked</p>
               <h3 className="text-4xl font-black mt-2">{getStockSummary.length}</h3>
             </div>
-            <Package size={32} className="text-white/30" />
+            <Package size={32} className="" />
           </div>
         </Card>
-        <Card className="bg-emerald-600 text-white border-none shadow-lg shadow-emerald-500/30">
-           <div className="flex justify-between items-start">
+        <Card className="bg-emerald-600  border-none shadow-lg shadow-emerald-500/30">
+          <div className="flex justify-between items-start">
             <div>
-              <p className="text-white/70 text-sm font-bold uppercase">Total Purchased</p>
+              <p className="text-gray-700 text-sm font-bold uppercase">Total Purchased</p>
               <h3 className="text-4xl font-black mt-2">
                 {getStockSummary.reduce((sum, item) => sum + item.purchased, 0).toLocaleString()}
               </h3>
             </div>
-            <TrendingUp size={32} className="text-white/30" />
+            <TrendingUp size={32} className="" />
           </div>
         </Card>
-        <Card className="bg-sky-600 text-white border-none shadow-lg shadow-sky-500/30">
-           <div className="flex justify-between items-start">
+        <Card className="bg-sky-600  border-none shadow-lg shadow-sky-500/30">
+          <div className="flex justify-between items-start">
             <div>
-              <p className="text-white/70 text-sm font-bold uppercase">Total Utilized</p>
+              <p className="text-gray-700 text-sm font-bold uppercase">Total Utilized</p>
               <h3 className="text-4xl font-black mt-2">
                 {getStockSummary.reduce((sum, item) => sum + item.sold, 0).toLocaleString()}
               </h3>
             </div>
-            <TrendingDown size={32} className="text-white/30" />
+            <TrendingDown size={32} className="" />
           </div>
         </Card>
       </div>

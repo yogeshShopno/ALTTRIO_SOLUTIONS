@@ -6,16 +6,16 @@ const STAGES = ["Aluminium", "Glass", "Hardware", "Fitting", "Order", "Complete"
 const STATUS_CONFIG = {
   pending:     { label: "Pending",     cls: "bg-yellow-50 text-yellow-600 border-yellow-200" },
   "in-progress": { label: "In Progress", cls: "bg-blue-50 text-blue-600 border-blue-200" },
-  success:     { label: "Success",     cls: "bg-emerald-50 text-emerald-600 border-emerald-200" },
+  success: { label: "Success", cls: "bg-emerald-50 text-emerald-600 border-emerald-200" },
 };
 
 const STAGE_CONFIG = {
-  Aluminium: { color: "bg-slate-200 text-slate-600",   done: "bg-slate-600 text-white" },
-  Glass:     { color: "bg-cyan-100 text-cyan-700",     done: "bg-cyan-600 text-white" },
-  Hardware:  { color: "bg-orange-100 text-orange-700", done: "bg-orange-500 text-white" },
-  Fitting:   { color: "bg-purple-100 text-purple-700", done: "bg-purple-600 text-white" },
-  Order:     { color: "bg-pink-100 text-pink-700",     done: "bg-pink-600 text-white" },
-  Complete:  { color: "bg-emerald-100 text-emerald-700",done:"bg-emerald-600 text-white" },
+  Aluminium: { color: "bg-slate-200 text-slate-600", done: "bg-slate-600 " },
+  Glass: { color: "bg-cyan-100 text-cyan-700", done: "bg-cyan-600 " },
+  Hardware: { color: "bg-orange-100 text-orange-700", done: "bg-orange-500 " },
+  Fitting: { color: "bg-purple-100 text-purple-700", done: "bg-purple-600 " },
+  Order: { color: "bg-pink-100 text-pink-700", done: "bg-pink-600 " },
+  Complete: { color: "bg-emerald-100 text-emerald-700", done: "bg-emerald-600 " },
 };
 
 // ─── Mock data ─────────────────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ function ProjectCard({ project, onEdit }) {
       {/* Top row: avatar + name + status */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className={`${avatarColor} w-11 h-11 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+          <div className={`${avatarColor} w-11 h-11 rounded-xl flex items-center justify-center  font-bold text-sm flex-shrink-0`}>
             {initials(project.name)}
           </div>
           <div>
@@ -147,7 +147,7 @@ function ProjectCard({ project, onEdit }) {
           Edit
         </button>
         <button
-          className="flex-1 py-1.5 rounded-lg text-xs font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition">
+          className="flex-1 py-1.5 rounded-lg text-xs font-medium bg-indigo-600  hover:bg-indigo-700 transition">
           View Details
         </button>
       </div>
@@ -263,7 +263,7 @@ function ProjectDialog({ project = null, onSave, onClose }) {
             Cancel
           </button>
           <button onClick={handleSave} disabled={!form.name || !form.client}
-            className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 transition shadow-sm">
+            className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600  hover:bg-indigo-700 disabled:opacity-40 transition shadow-sm">
             {isEdit ? "Update Project" : "Add Project"}
           </button>
         </div>
@@ -308,7 +308,7 @@ export default function Projects() {
             <h1 className="text-2xl font-bold text-gray-800">Projects</h1>
           </div>
           <button onClick={() => setDialog("add")}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-sm">
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600  hover:bg-indigo-700 transition shadow-sm">
             <span className="text-base leading-none">+</span> Add Project
           </button>
         </div>
@@ -337,7 +337,7 @@ export default function Projects() {
               <button key={s} onClick={() => setFilterStatus(s)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition
                   ${filterStatus === s
-                    ? "bg-indigo-600 text-white border-indigo-600"
+                    ? "bg-indigo-600  border-indigo-600"
                     : "bg-white text-gray-500 border-gray-200 hover:border-indigo-300"}`}>
                 {s === "all" ? "All" : STATUS_CONFIG[s]?.label}
               </button>

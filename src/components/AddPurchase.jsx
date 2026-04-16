@@ -285,7 +285,7 @@ export default function AddPurchase({ initialData = null, isEdit = false, onSubm
             )}
             <button
               type="submit"
-              className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-sm"
+              className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600  hover:bg-indigo-700 transition shadow-sm"
             >
               {isEdit ? "Update Purchase" : "Save Purchase"}
             </button>

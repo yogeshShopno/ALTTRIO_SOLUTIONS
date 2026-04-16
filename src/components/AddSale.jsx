@@ -303,7 +303,7 @@ export default function AddSale({ initialData = null, isEdit = false, onSubmit, 
               </button>
             )}
             <button type="submit"
-              className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-sm">
+              className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600  hover:bg-indigo-700 transition shadow-sm">
               {isEdit ? "Update Sale" : "Save Sale"}
             </button>
           </div>

@@ -106,7 +106,7 @@ export default function AddProduct({ initialData = null, isEdit = false, onSubmi
                   onClick={() => toggleCategory(cat)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition
                     ${form.categories.includes(cat)
-                      ? "bg-indigo-600 text-white border-indigo-600"
+                      ? "bg-indigo-600  border-indigo-600"
                       : "bg-white text-gray-600 border-gray-200 hover:border-indigo-300"
                     }`}
                 >
@@ -126,7 +126,7 @@ export default function AddProduct({ initialData = null, isEdit = false, onSubmi
                   onClick={() => toggleMaterial(mat)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition
                     ${form.materials.includes(mat)
-                      ? "bg-emerald-600 text-white border-emerald-600"
+                      ? "bg-emerald-600  border-emerald-600"
                       : "bg-white text-gray-600 border-gray-200 hover:border-emerald-300"
                     }`}
                 >
@@ -198,7 +198,7 @@ export default function AddProduct({ initialData = null, isEdit = false, onSubmi
             )}
             <button
               type="submit"
-              className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-sm"
+              className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600  hover:bg-indigo-700 transition shadow-sm"
             >
               {isEdit ? "Update Product" : "Save Product"}
             </button>

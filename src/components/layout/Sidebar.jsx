@@ -45,7 +45,7 @@ export const Sidebar = () => {
   return (
     <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50">
       <div className="p-6 flex items-center gap-3 border-b border-gray-50">
-        <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand/30">
+        <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center  shadow-lg shadow-brand/30">
           <Factory size={24} />
         </div>
         <div>
