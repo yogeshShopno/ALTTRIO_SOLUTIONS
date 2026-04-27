@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Factory, Lock, Mail, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { Card } from '../components/ui/Card';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -13,35 +14,35 @@ export const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
     if (email === 'admin@gmail.com' && password === 'Pass@123') {
       setTimeout(() => {
         setLoading(false);
         navigate('/dashboard');
       }, 1500);
       localStorage.setItem("login", true);
-    }
-    else {``
+    } else {
       setLoading(false);
       alert('Invalid credentials');
-    } ``
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 transition-colors duration-300"
+      style={{ backgroundColor: 'var(--surface-page)' }}
+    >
+      <div className="max-w-md w-full relative z-10">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16rounded-2xl text-white shadow-xl shadow-brand/30 mb-6">
-              <div className="w-20  flex items-center justify-center  ">
-
-          <img src='/logo.jpg' />
-        </div>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6">
+            <div className="w-20 flex items-center justify-center">
+              <img src='/logo.jpg' alt="Logo" className="rounded-xl shadow-lg" />
+            </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-500 mt-2 font-medium">ALTTRIO SOLUTIONS </p>
+          <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>Welcome Back</h1>
+          <p className="mt-2 font-medium" style={{ color: 'var(--text-muted)' }}>ALTTRIO SOLUTIONS</p>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100">
+        <Card className="p-2">
           <form onSubmit={handleLogin} className="space-y-6">
             <Input
               label="Email Address"
@@ -66,7 +67,7 @@ export const Login = () => {
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand" />
-                <span className="text-gray-500 font-medium">Remember me</span>
+                <span className="font-medium" style={{ color: 'var(--text-muted)' }}>Remember me</span>
               </label>
               <a href="#" className="font-semibold text-brand hover:text-brand-hover">Forgot password?</a>
             </div>
@@ -90,16 +91,20 @@ export const Login = () => {
             </Button>
           </form>
 
-          <div className="mt-8 p-4 bg-amber-50 border border-amber-100 rounded-xl">
-            <p className="text-xs text-amber-800 leading-relaxed">
-              <span className="font-bold flex items-center gap-1 mb-1 italic uppercase tracking-wider">
+          <div 
+            className="mt-8 p-4 rounded-xl border"
+            style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--border-strong)' }}
+          >
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <span className="font-bold flex items-center gap-1 mb-1 italic uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
                 Note:
               </span>
-              This is just a demo version. this actual login will be different</p>
+              This is just a demo version. this actual login will be different
+            </p>
           </div>
-        </div>
+        </Card>
 
-        <p className="text-center mt-8 text-sm text-gray-500 font-medium">
+        <p className="text-center mt-8 text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
           Don't have an account? <a href="#" className="text-brand font-bold">Register Now</a>
         </p>
       </div>
