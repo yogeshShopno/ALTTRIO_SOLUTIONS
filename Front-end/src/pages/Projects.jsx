@@ -188,11 +188,13 @@ export const Projects = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         {projects.map((project) => (
-          <Card key={project.id} className="group transition-all flex flex-col metallicss"
-            style={{
-              backgroundColor: '#c0c0c0'
-            }}>
-            <div className='bg-white p-5'>
+          <Card 
+            key={project.id} 
+            className="group transition-all flex flex-col"
+            borderAluminum={true}
+            showHandle={true}
+          >
+            <div className='p-5 rounded-lg' style={{ backgroundColor: 'var(--surface-card)' }}>
               <div className="flex-1">
                 <div className="flex justify-between items-start mb-4">
                   <Badge variant={project.category === 'Aluminium' ? 'brand' : 'info'}>

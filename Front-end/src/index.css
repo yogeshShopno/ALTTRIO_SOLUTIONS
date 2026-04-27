@@ -1,82 +1,199 @@
 @import "tailwindcss";
 
+/* =============================================
+   DESIGN TOKENS
+   ============================================= */
 :root {
-  --primary: #022135;
-  --secondary: #F4911D;
-  --primary-hover: #01253d;
-  
-  --bg-main: #f9fafb;
-  --text-main: #111827;
+  --primary:        #022135;
+  --secondary:      #F4911D;
+  --primary-hover:  #01253d;
+
+  /* Light mode surfaces */
+  --surface-page:   #f9fafb;
+  --surface-card:   #ffffff;
+  --surface-subtle: #f3f4f6;
+  --surface-input:  #ffffff;
+
+  /* Light mode text */
+  --text-primary:   #111827;
+  --text-secondary: #374151;
+  --text-muted:     #6b7280;
+  --text-faint:     #9ca3af;
+
+  /* Light mode borders */
+  --border-soft:    #f3f4f6;
+  --border-base:    #e5e7eb;
+  --border-strong:  #d1d5db;
+
+  color-scheme: light;
 }
 
-@theme {
-  --color-brand: var(--primary);
-  --color-brand-secondary: var(--secondary);
-  --color-brand-hover: var(--primary-hover);
-}
-
-/* 
-  Global Dark Mode Remapping 
-  We remap Tailwind's core color palette internally so every background, 
-  text, border, and icon automatically uses the brand-perfect colors without overlaps.
-*/
+/* Dark mode — layered depth: page(darkest) → card → subtle → input(lightest) */
 .dark {
-  --bg-main: #01121d;
-  --text-main: #ffffff;
+  --surface-page:   #010c15;  /* Level 0 — page background, darkest */
+  --surface-card:   #011828;  /* Level 1 — card backgrounds */
+  --surface-subtle: #0a2e4a;  /* Level 2 — nested sections inside cards (clearly lighter) */
+  --surface-input:  #0e3d5e;  /* Level 3 — inputs, hover rows, innermost items (lightest) */
 
-  /* Overriding Tailwind's White and Black */
-  --color-white: #022135; /* Cards and main components */
-  --color-black: #ffffff; /* Inverse text */
+  --text-primary:   #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted:     #94a3b8;
+  --text-faint:     #64748b;
 
-  /* Overriding Tailwind's Gray Palette using Primary variants */
-  --color-gray-50: #01121d;   /* Main background */
-  --color-gray-100: #011a2a;  /* Subtle backgrounds, light borders */
-  --color-gray-200: #033a5c;  /* Dividers, borders */
-  --color-gray-300: #044b78;  /* Stronger borders, disabled text */
-  --color-gray-400: #05619b;  /* Muted icons */
-  --color-gray-500: #7ebae4;  /* Muted text */
-  --color-gray-600: #a9d0ed;  /* Standard secondary text */
-  --color-gray-700: #cce4f5;  /* Emphasized secondary text */
-  --color-gray-800: #ebf5fc;  /* Strong text */
-  --color-gray-900: #ffffff;  /* Primary text */
-  --color-gray-950: #ffffff;  /* Primary text */
+  --border-soft:    #082640;
+  --border-base:    #0c3354;
+  --border-strong:  #104268;
+
+  color-scheme: dark;
 }
 
+
+/* =============================================
+   TAILWIND THEME
+   ============================================= */
+@theme {
+  --color-brand:           var(--primary);
+  --color-brand-secondary: var(--secondary);
+  --color-brand-hover:     var(--primary-hover);
+}
+
+/* =============================================
+   BASE
+   ============================================= */
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  background-color: var(--surface-page);
+  color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#root {
-  min-height: 100vh;
-}
+#root { min-height: 100vh; }
 
-/* Ensure inputs, selects, and textareas perfectly match the dark theme */
-.dark input, 
-.dark select, 
+/* =============================================
+   GLOBAL DARK OVERRIDES
+   Exhaustively cover every Tailwind class used across 
+   this project so nothing is left at its light-mode value.
+   ============================================= */
+
+/* --- Backgrounds --- */
+.dark .bg-white             { background-color: var(--surface-card)   !important; }
+.dark .bg-gray-50           { background-color: var(--surface-subtle) !important; }
+.dark .bg-gray-50\/50       { background-color: color-mix(in srgb, var(--surface-subtle) 50%, transparent) !important; }
+.dark .bg-gray-100          { background-color: var(--surface-subtle) !important; }
+.dark .bg-gray-200          { background-color: var(--border-base)    !important; }
+
+/* --- Text colors --- */
+.dark .text-gray-950        { color: var(--text-primary)   !important; }
+.dark .text-gray-900        { color: var(--text-primary)   !important; }
+.dark .text-gray-800        { color: var(--text-secondary) !important; }
+.dark .text-gray-700        { color: var(--text-secondary) !important; }
+.dark .text-gray-600        { color: var(--text-muted)     !important; }
+.dark .text-gray-500        { color: var(--text-muted)     !important; }
+.dark .text-gray-400        { color: var(--text-faint)     !important; }
+
+/* --- Border colors --- */
+.dark .border-gray-50       { border-color: var(--border-soft)   !important; }
+.dark .border-gray-100      { border-color: var(--border-soft)   !important; }
+.dark .border-gray-200      { border-color: var(--border-base)   !important; }
+.dark .border-gray-300      { border-color: var(--border-strong) !important; }
+
+/* --- Divide colors --- */
+.dark .divide-gray-100 > * + * { border-color: var(--border-soft) !important; }
+
+/* --- Ring colors --- */
+.dark .ring-gray-200        { --tw-ring-color: var(--border-base) !important; }
+
+/* --- Hover backgrounds (interactive elements) --- */
+.dark .hover\:bg-gray-100:hover  { background-color: var(--surface-subtle) !important; }
+.dark .hover\:bg-gray-50:hover   { background-color: var(--surface-card)   !important; }
+
+/* --- Focus rings --- */
+.dark .focus\:ring-brand\/10:focus { --tw-ring-color: rgba(2,33,53,0.3) !important; }
+
+/* --- Form elements --- */
+.dark input,
+.dark select,
 .dark textarea {
-  background-color: var(--color-gray-100) !important;
-  color: var(--color-white) !important;
-  color: #ffffff !important;
-  border-color: var(--color-gray-200) !important;
+  background-color: var(--surface-input) !important;
+  color: var(--text-primary)             !important;
+  border-color: var(--border-base)       !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--text-faint) !important;
 }
 
-/* Remove bright shadows in dark mode and replace with deep ambient shadows */
-.dark * {
-  --tw-shadow-color: rgba(0, 0, 0, 0.8) !important;
-}
-.dark .shadow-sm, 
-.dark .shadow, 
-.dark .shadow-md, 
-.dark .shadow-lg, 
+/* --- Shadows: replace bright gray halos with deep dark ones --- */
+.dark .shadow-sm,
+.dark .shadow,
+.dark .shadow-md,
+.dark .shadow-lg,
 .dark .shadow-xl {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5) !important;
 }
 
-/* Fix any edge cases where white backgrounds are hardcoded outside Tailwind variables */
-.dark .bg-white {
-  background-color: var(--color-white) !important;
+/* --- Badge / Tag backgrounds that use gray --- */
+.dark .bg-gray-50.rounded-full,
+.dark .bg-gray-100.rounded-full,
+.dark .bg-gray-100.rounded-xl { background-color: var(--surface-subtle) !important; }
+
+/* =============================================
+   ALUMINIUM CARD BORDER (Project Cards)
+   ============================================= */
+@layer utilities {
+  .border-aluminum {
+    padding: 6px; /* Act as a frame for inner content */
+    border-radius: 12px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.6),
+      inset 0 -1px 0 rgba(0,0,0,0.2),
+      inset 1px 0 0 rgba(255,255,255,0.4),
+      inset -1px 0 0 rgba(0,0,0,0.15),
+      0 0 0 1px #b8bfc9,
+      0 4px 16px rgba(0,0,0,0.25);
+    background: linear-gradient(180deg, #e8ecf0 0%, #c8cfd8 40%, #d8dde4 60%, #b0b8c4 100%);
+    position: relative;
+  }
+
+  .border-aluminum::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg,
+      rgba(255,255,255,0.5) 0%,
+      transparent 50%,
+      rgba(0,0,0,0.08) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Corner pieces — top-left and bottom-right */
+  .aluminum-corner::before,
+  .aluminum-corner::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #9aa0aa;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .aluminum-corner::before { top: -7px; left: -7px; }
+  .aluminum-corner::after  { bottom: -7px; right: -7px; }
+
+  /* Window handle accent line */
+  .aluminum-handle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 36px;
+    border-radius: 3px 0 0 3px;
+    background: linear-gradient(180deg, #e0e4ea 0%, #9aa0aa 50%, #b8bfc9 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.2), -1px 0 3px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
 }
