@@ -4,7 +4,9 @@
   --primary: #022135;
   --secondary: #F4911D;
   --primary-hover: #01253d;
+  
   --bg-main: #f9fafb;
+  --text-main: #111827;
 }
 
 @theme {
@@ -13,14 +15,68 @@
   --color-brand-hover: var(--primary-hover);
 }
 
+/* 
+  Global Dark Mode Remapping 
+  We remap Tailwind's core color palette internally so every background, 
+  text, border, and icon automatically uses the brand-perfect colors without overlaps.
+*/
+.dark {
+  --bg-main: #01121d;
+  --text-main: #ffffff;
+
+  /* Overriding Tailwind's White and Black */
+  --color-white: #022135; /* Cards and main components */
+  --color-black: #ffffff; /* Inverse text */
+
+  /* Overriding Tailwind's Gray Palette using Primary variants */
+  --color-gray-50: #01121d;   /* Main background */
+  --color-gray-100: #011a2a;  /* Subtle backgrounds, light borders */
+  --color-gray-200: #033a5c;  /* Dividers, borders */
+  --color-gray-300: #044b78;  /* Stronger borders, disabled text */
+  --color-gray-400: #05619b;  /* Muted icons */
+  --color-gray-500: #7ebae4;  /* Muted text */
+  --color-gray-600: #a9d0ed;  /* Standard secondary text */
+  --color-gray-700: #cce4f5;  /* Emphasized secondary text */
+  --color-gray-800: #ebf5fc;  /* Strong text */
+  --color-gray-900: #ffffff;  /* Primary text */
+  --color-gray-950: #ffffff;  /* Primary text */
+}
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-main);
-  color: #111827;
-  
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* Ensure inputs, selects, and textareas perfectly match the dark theme */
+.dark input, 
+.dark select, 
+.dark textarea {
+  background-color: var(--color-gray-100) !important;
+  color: var(--color-white) !important;
+  color: #ffffff !important;
+  border-color: var(--color-gray-200) !important;
+}
+
+/* Remove bright shadows in dark mode and replace with deep ambient shadows */
+.dark * {
+  --tw-shadow-color: rgba(0, 0, 0, 0.8) !important;
+}
+.dark .shadow-sm, 
+.dark .shadow, 
+.dark .shadow-md, 
+.dark .shadow-lg, 
+.dark .shadow-xl {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Fix any edge cases where white backgrounds are hardcoded outside Tailwind variables */
+.dark .bg-white {
+  background-color: var(--color-white) !important;
 }

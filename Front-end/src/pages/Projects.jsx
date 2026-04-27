@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Plus,
   Briefcase,
@@ -17,8 +18,6 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Modal } from '../components/ui/Modal';
 import { Input, Select } from '../components/ui/Input';
-
-import { useEffect } from 'react';
 
 const ProjectForm = ({ onSave, onCancel }) => {
   const { products } = useApp();
@@ -159,6 +158,7 @@ const StageModal = ({ isOpen, onClose, currentStage, onSelect }) => {
 
 export const Projects = () => {
   const { projects, addProject, updateProjectStatus, updateProjectStage } = useApp();
+  const navigate = useNavigate();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isStageModalOpen, setIsStageModalOpen] = useState(false);
@@ -179,7 +179,7 @@ export const Projects = () => {
           <h1 className="text-2xl font-bold text-gray-900">Active Projects</h1>
           <p className="text-gray-500 font-medium mt-1">Monitor manufacturing stages and completion status.</p>
         </div>
-        <Button onClick={() => setIsFormOpen(true)}>
+        <Button onClick={() => navigate('/projects/new')}>
           <Plus size={20} />
           <span>New Project</span>
         </Button>

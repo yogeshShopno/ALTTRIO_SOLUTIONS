@@ -1,10 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { AppProvider } from './store/AppContext';
 import { Layout } from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
 import Purchases from './pages/Purchases';
 import Projects from './pages/Projects';
+import AddProject from './pages/AddProject';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
@@ -16,6 +18,7 @@ function App() {
   return (
     <AppProvider>
       <Router>
+        <Toaster position="top-right" />
         <Routes>
           <Route path="/login" element={<Login />} />
 
@@ -29,6 +32,7 @@ function App() {
                   <Route path="/products" element={<Products />} />
                   <Route path="/purchases" element={<Purchases />} />
                   <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/new" element={<AddProject />} />
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/" element={<Navigate to="/dashboard" replace />} />
                   <Route path="*" element={<NotFound />} />
@@ -44,4 +48,3 @@ function App() {
 }
 
 export default App;
-
